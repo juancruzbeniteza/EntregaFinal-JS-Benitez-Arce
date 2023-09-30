@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Peso y Calorías</title>
+    <meta name="description" content="Calculadora de Peso y Calorías - Calcula tus calorías diarias y establece metas de masa muscular">
+    <meta name="keywords" content="Calculadora, Peso corporal, Calorías, Metas de masa muscular">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./estilos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./app.js"></script>
+</head>
+<body>
+    <header class="position-fixed top-0 w-100">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Calculadora de Peso y Calorías</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="nuevoGuardado">Nuevo guardado</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="borrarDatos">Reiniciar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section class="inputs">
+            <article class="calorias">
+                <h2>CALCULADORA DE CALORÍAS</h2>
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Edad</label>
+                    <input class="form-control" type="number" id="edad">
+                </div>
+                <div class="mb-3">
+                    <label for="peso" class="form-label">Peso (kg)</label>
+                    <input class="form-control" type="number" id="peso">
+                </div>
+                <div class="mb-3">
+                    <label for="altura" class="form-label">Altura (cm)</label>
+                    <input class="form-control" type="number" id="altura">
+                </div>
+                <div class="mb-3">
+                    <label for="sexo" class="form-label">Sexo</label>
+                    <select class="form-select" id="sexo">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="nivelActividad" class="form-label">Nivel de Actividad</label>
+                    <select class="form-select" id="nivelActividad">
+                        <option value="sedentario">Sedentario</option>
+                        <option value="ligero">Ligero (1-2 días/semana)</option>
+                        <option value="moderado">Moderado (3-4 días/semana)</option>
+                        <option value="activo">Activo (5-6 días/semana)</option>
+                        <option value="muyActivo">Muy Activo (7 días/semana)</option>
+                    </select>
+                </div>
+                <section class="actividad-fisica">
+                    <div class="mb-3">
+                        <label for="actividadFisica" class="form-label">Tipo de Actividad Física</label>
+                        <select class="form-select" id="actividadFisica">
+                            <option value="sedentario">Selecciona una actividad</option>
+                            <option value="bicicleta">Bicicleta</option>
+                            <option value="baile">Baile (Zumba)</option>
+                            <option value="gymnasio">Gymnasio</option>
+                            <option value="correr">Salir a Correr</option>
+                            <option value="futbol">Futbol</option>
+                            <option value="nado">Nado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn" id="calcularCalorias">Calcular Calorías</button>
+                        <button id="retrieveCaloriesData">Recuperar Datos de Calorías</button>
+                    </div>
+                </section>
+                <div>
+                    <p id="resultadoCalorias"></p>
+                </div>
+            </article>
+            <article class="metas">
+                <h2>METAS DE MASA MUSCULAR</h2>
+                <div class="mb-3">
+                    <label for="metaPeso" class="form-label">Meta de Peso (kg)</label>
+                    <input class="form-control" type="number" id="metaPeso">
+                </div>
+                <div class="mb-3">
+                    <label for="metaActividad" class="form-label">Meta de Actividad Física</label>
+                    <input class="form-control" id="metaActividad" placeholder="Ejemplo: 3 días/semana">
+                </div>
+                <div>
+                    <button type="submit" class="btn" id="establecerMetas">Establecer Metas</button>
+                </div>
+                <div>
+                    <p>Metas Establecidas:</p>
+                    <ul id="listaMetas"></ul>
+                </div>
+            </article>
+        </section>
+        <section class="calorie-info">
+            <h2>NECESIDAD CALÓRICA DIARIA</h2>
+            <p id="calorie-info"></p>
+            <h3>Recomendaciones</h3>
+            <p id="calorie-recommendation"></p>
+        </section>
+        <h1>Seguimineto de Entrenaminto</h1>
+        <div class="workout-form">
+            <h2>Carga tu Entrenamiento</h2>
+            <label for="exerciseType">Tipo de Ejercisio:</label>
+            <input type="text" id="exerciseType" placeholder="e.g., Correr">
+        
+            <label for="duration">Duracion (minutos):</label>
+            <input type="number" id="duration" placeholder="0">
+        
+            <label for="caloriesBurned">Calorias Quemadas:</label>
+            <input type="number" id="caloriesBurned" placeholder="0">
+        
+            <button id="logWorkout">Cargar</button>
+            <button id="retrieveFitnessData">Recuperar Datos de Fitness</button>
+        </div>
+        <div class="workout-history">
+            <h2>Historial de Entrenamiento</h2>
+            <ul id="workoutList"></ul>
+        </div>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <footer class="container">
+        <p>&copy; 2023 Finargy. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

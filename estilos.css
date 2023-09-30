@@ -1,0 +1,200 @@
+/* Estilos Generales*/
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  background-color: darkslategray;
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 24px;
+}
+
+.navbar-toggler-icon {
+  background-color: white;
+}
+
+/* Estilos del Header  */
+header {
+  background-color: darkslategray;
+  padding: 5px ;
+  box-shadow: 0px 2px 5px darkslategray;
+}
+
+.nav-link {
+  color: white;
+  font-weight: bold;
+}
+
+/* Estilos del Contenido Principal */
+main {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+article {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding: 50px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}
+
+.btn {
+  background-color: #343a40;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #292e32;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo de la información de Calorías */
+.calorie-info {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 120px; 
+  text-align: center;
+}
+
+/* Estilos de "Calculadora de Calorías" */
+.calorie-info .calculator-title {
+  font-size: 32px; 
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.calorie-info h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.calorie-info p#calorie-info {
+  font-size: 22px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Estilos de "Recomendaciones" */
+.calorie-info h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.calorie-info p#calorie-recommendation {
+  font-size: 18px;
+  color: #777;
+  line-height: 1.5;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.workout-form {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.workout-form h2 {
+  margin-top: 0;
+}
+
+.workout-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.workout-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.workout-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.workout-form button:hover {
+  background-color: #0056b3;
+}
+
+.workout-history {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.workout-history h2 {
+  margin-top: 0;
+}
+
+
+/* Estilos del Footer */
+.container footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+.container footer p {
+  margin: 0;
+}
