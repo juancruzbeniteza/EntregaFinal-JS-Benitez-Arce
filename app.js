@@ -42,8 +42,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const calorieRecommendation = document.getElementById("calorie-recommendation");
         calorieRecommendation.textContent = '';
     };
-    let workoutHistory = [];
+
+    // Funcion para mostrar los entrenamientos
     const displayWorkouts = () => {
+        const workoutList = document.getElementById("workoutList");
+        workoutList.innerHTML = ""; // Limpiar la lista previa de entrenamientos
+
+        workoutHistory.forEach((workout, index) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `Workout ${index + 1}: ${workout.exerciseType}, Duración: ${workout.duration} minutos, Calorías Quemadas: ${workout.caloriesBurned}`;
+            workoutList.appendChild(listItem);
+        });
     };
 
     // Funcion para calcular calorias 
@@ -118,9 +127,11 @@ document.addEventListener("DOMContentLoaded", function () {
             confirmButtonText: 'OK',
         });
     };
+
     // Listener de Buttons 
     document.getElementById("calcularCalorias").addEventListener("click", calcularCalorias);
     document.getElementById("establecerMetas").addEventListener("click", establecerMetas);
+
     document.getElementById("logWorkout").addEventListener("click", () => {
         const exerciseType = document.getElementById("exerciseType").value.trim();
         const duration = parseInt(document.getElementById("duration").value);
@@ -140,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("caloriesBurned").value = "";
         displayWorkouts();
     });
+
     // Funcion para buscar y mostrar los datos guardados 
     const retrieveCaloriesData = () => {
         const userDataJSON = localStorage.getItem("userData");
@@ -160,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("No se encontraron datos almacenados para Fitness Tracker.");
         }
     };
+
     document.getElementById("retrieveCaloriesData").addEventListener("click", retrieveCaloriesData);
     document.getElementById("retrieveFitnessData").addEventListener("click", retrieveFitnessData);
 });
