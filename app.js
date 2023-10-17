@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Constante de las Actividades 
     const ACTIVITY_CALORIES = {
         correr: 150,
         bicicleta: 120,
@@ -9,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
         otro: 60,
     };
 
-    // Mensaje de Toastify 
     const showToast = (message, type) => {
         Toastify({
             text: message,
@@ -20,21 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }).showToast();
     };
 
-    // Funcion para la informacion Calorica 
     const updateCalorieInfo = (calories) => {
         const calorieInfo = document.getElementById("calorie-info");
         calorieInfo.textContent = `Tu necesidad calórica diaria es: ${calories.toFixed(2)} kcal`;
 
-        // Calculo para el Bulk y el Cut 
-        const bulkingCalories = calories + 500; 
-        const cuttingCalories = calories - 500; 
+        const bulkingCalories = calories + 500;
+        const cuttingCalories = calories - 500;
 
         const calorieRecommendation = document.getElementById("calorie-recommendation");
         calorieRecommendation.innerHTML = `Para ganar peso (bulking): ${bulkingCalories.toFixed(2)} kcal al día<br>`;
         calorieRecommendation.innerHTML += `Para perder peso (cutting): ${cuttingCalories.toFixed(2)} kcal al día`;
     };
 
-    // Funcion para resetear la informacion 
     const resetCalorieInfo = () => {
         const calorieInfo = document.getElementById("calorie-info");
         calorieInfo.textContent = '';
@@ -45,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let workoutHistory = [];
 
-    // Funcion para mostrar entrenamientos
     const displayWorkouts = () => {
         const workoutList = document.getElementById("workoutList");
         workoutList.innerHTML = "";
@@ -53,14 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
         workoutHistory.forEach((workout, index) => {
             const listItem = document.createElement("li");
             listItem.innerHTML = `<strong>Entrenamiento ${index + 1}:</strong><br>
-                                  Tipo: ${workout.exerciseType}<br>
-                                  Duración: ${workout.duration} minutos<br>
-                                  Calorías Quemadas: ${workout.caloriesBurned} kcal`;
+        Tipo: ${workout.exerciseType}<br>
+        Duración: ${workout.duration} minutos<br>
+        Calorías Quemadas: ${workout.caloriesBurned} kcal`;
             workoutList.appendChild(listItem);
         });
     };
 
-    // Funcion para calcular calorias 
     const calcularCalorias = () => {
         const edad = parseFloat(document.getElementById("edad").value);
         const peso = parseFloat(document.getElementById("peso").value);
@@ -84,13 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         calorias *= activityMultiplier;
 
-        // Ajuste en base al tipo de actividad realizado
         if (actividadFisica !== "") {
             calorias += ACTIVITY_CALORIES[actividadFisica] || 0;
         }
         updateCalorieInfo(calorias);
 
-        // Guardado de data en Json 
         const userData = {
             edad,
             peso,
@@ -101,11 +92,9 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         localStorage.setItem("userData", JSON.stringify(userData));
 
-        // Mensaje de Toastify 
         showToast("Necesidad calórica calculada correctamente.", "success");
     };
 
-    // Funcion para objetivos 
     const establecerMetas = () => {
         const metaPeso = parseFloat(document.getElementById("metaPeso").value);
         const metaActividad = document.getElementById("metaActividad").value;
@@ -118,13 +107,12 @@ document.addEventListener("DOMContentLoaded", function () {
         listItem.textContent = `Meta de peso: ${meta.peso} kg, Meta de actividad: ${meta.actividad}`;
         listaMetas.appendChild(listItem);
 
-        // Guardado de data en Json 
         const goalsData = {
             metaPeso,
             metaActividad,
         };
         localStorage.setItem("goalsData", JSON.stringify(goalsData));
-        // Mensaje de Sweet Alert
+
         Swal.fire({
             title: 'Metas Establecidas',
             text: 'Tus metas de masa muscular han sido establecidas correctamente.',
@@ -133,11 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    // Listener de Buttons 
     document.getElementById("calcularCalorias").addEventListener("click", calcularCalorias);
     document.getElementById("establecerMetas").addEventListener("click", establecerMetas);
 
-    // Event listener for "Reiniciar" button
     const botonBorrarDatos = document.getElementById('borrarDatos');
     botonBorrarDatos.addEventListener('click', function () {
         Swal.fire({
@@ -172,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     });
 
-    // Event listener for "Nuevo Guardado" button
     const botonNuevoGuardado = document.getElementById("nuevoGuardado");
     botonNuevoGuardado.addEventListener("click", function () {
         Swal.fire({
@@ -198,7 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Event listener for "Log Workout" button
     document.getElementById("logWorkout").addEventListener("click", () => {
         const exerciseType = document.getElementById("exerciseType").value.trim();
         const duration = parseInt(document.getElementById("duration").value);
@@ -217,39 +201,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
         workoutHistory.push(workout);
 
-        // Clear input fields
         document.getElementById("exerciseType").value = "";
         document.getElementById("duration").value = "";
         document.getElementById("caloriesBurned").value = "";
 
-        // Display the updated workout history
         displayWorkouts();
     });
 
-    // Function to retrieve and show calorie data
     const retrieveCaloriesData = () => {
         const userDataJSON = localStorage.getItem("userData");
         if (userDataJSON) {
             const userData = JSON.parse(userDataJSON);
-            alert("Datos de usuario recuperados: " + JSON.stringify(userData));
+            document.getElementById("edad").value = userData.edad;
+            document.getElementById("peso").value = userData.peso;
+            document.getElementById("altura").value = userData.altura;
+            document.getElementById("sexo").value = userData.sexo;
+            document.getElementById("nivelActividad").value = userData.nivelActividad;
+            document.getElementById("actividadFisica").value = userData.actividadFisica;
+            showToast("Datos de usuario recuperados.", "success");
         } else {
-            alert("No se encontraron datos almacenados para Calculadora de Calorias.");
+            alert("No se encontraron datos almacenados para la Calculadora de Calorías.");
         }
     };
 
-    // Function to retrieve and show fitness data
     const retrieveFitnessData = () => {
         const goalsDataJSON = localStorage.getItem("goalsData");
         if (goalsDataJSON) {
             const goalsData = JSON.parse(goalsDataJSON);
-            alert("Datos de metas recuperados: " + JSON.stringify(goalsData));
+            document.getElementById("metaPeso").value = goalsData.metaPeso;
+            document.getElementById("metaActividad").value = goalsData.metaActividad;
+            showToast("Datos de metas recuperados.", "success");
         } else {
-            alert("No se encontraron datos almacenados para Fitness Tracker.");
+            alert("No se encontraron datos almacenados para el Fitness Tracker.");
         }
     };
 
-    // Event listeners for retrieving data
     document.getElementById("retrieveCaloriesData").addEventListener("click", retrieveCaloriesData);
     document.getElementById("retrieveFitnessData").addEventListener("click", retrieveFitnessData);
-});
 
+    retrieveCaloriesData();
+    retrieveFitnessData();
+});
